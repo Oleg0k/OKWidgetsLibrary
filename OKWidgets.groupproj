@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{A1E3E170-77A4-400B-BCF7-FB34C191BCEC}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="bpl_load_test.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="OKWidgetsLibrary.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="bpl_load_test">
+        <MSBuild Projects="bpl_load_test.dproj"/>
+    </Target>
+    <Target Name="bpl_load_test:Clean">
+        <MSBuild Projects="bpl_load_test.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="bpl_load_test:Make">
+        <MSBuild Projects="bpl_load_test.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="OKWidgetsLibrary">
+        <MSBuild Projects="OKWidgetsLibrary.dproj"/>
+    </Target>
+    <Target Name="OKWidgetsLibrary:Clean">
+        <MSBuild Projects="OKWidgetsLibrary.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="OKWidgetsLibrary:Make">
+        <MSBuild Projects="OKWidgetsLibrary.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="bpl_load_test;OKWidgetsLibrary"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="bpl_load_test:Clean;OKWidgetsLibrary:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="bpl_load_test:Make;OKWidgetsLibrary:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
